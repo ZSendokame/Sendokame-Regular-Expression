@@ -16,4 +16,8 @@ Windows:
 `git clone https://github.com/zsendokame/Sendokame-Regular-Expresion; cd Sendokame-Regular-Expresion; pip install -r requirements.txt`
 
 # How-to Use
-`python sre.py --regex "[A-z]" --string "A B C"`
+On strings:<br>
+`python sre.py --regex "[A-z]" --string "A B C"`<br>
+
+File:<br>
+`python sre.py --regex "[A-z]" --file "file.txt"`
