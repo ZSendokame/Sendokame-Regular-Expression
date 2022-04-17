@@ -1,24 +1,26 @@
 import re
 import argparse
-from colorama import Back, init
-
-init()
+import os
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--regex', help='Set Regex to Use.')
 parser.add_argument('--string', help='String to Analize.')
+parser.add_argument('--file', help='File to Analize.')
 args = parser.parse_args()
 
-string = args.string
-pattern = re.compile(r'' + args.regex)
-result = pattern.findall(args.string)
+# Error
+if not args.file == None and not os.path.exists(args.file):
+    print('Error: Cannot found file.')
+    exit(1)
+
+# Main
+string = args.string or open(args.file).read()
+result = re.findall(args.regex, string)
 
 if len(result) == 0:
-    print('\nError: Didn\'t Found any Matches.\n')
+    print('\nDidn\'t Found any Matches.\n')
     exit(1)
 
 else:
     for match in result:
-        string = string.replace(match, f'{Back.GREEN}{match}{Back.RESET}')
-
-print(f'\n{string}\n')
+        print(match)
